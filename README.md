@@ -1,21 +1,20 @@
 <p align="center">
-  <h1 align="center">Claude Code Game Studios</h1>
+  <h1 align="center">Codex Game Studios</h1>
   <p align="center">
-    Turn a single Claude Code session into a full game development studio.
+    Turn a single Codex session into a full game development studio.
     <br />
-    49 agents. 72 skills. One coordinated AI team.
+    49 studio roles. 72 workflow skills. One Codex-compatible game-dev system.
   </p>
 </p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
   <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 Agents"></a>
-  <a href=".claude/skills"><img src="https://img.shields.io/badge/skills-72-green" alt="72 Skills"></a>
+  <a href=".agents/skills"><img src="https://img.shields.io/badge/codex%20skills-72-green" alt="72 Codex Skills"></a>
   <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-12-orange" alt="12 Hooks"></a>
   <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
-  <a href="https://docs.anthropic.com/en/docs/claude-code"><img src="https://img.shields.io/badge/built%20for-Claude%20Code-f5f5f5?logo=anthropic" alt="Built for Claude Code"></a>
-  <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-Support%20this%20project-FFDD00?logo=buymeacoffee&logoColor=black" alt="Buy Me a Coffee"></a>
-  <a href="https://github.com/sponsors/Donchitos"><img src="https://img.shields.io/badge/GitHub%20Sponsors-Support%20this%20project-ea4aaa?logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"></a>
+  <a href="https://github.com/pa4uslf/Codex-Game-Studios"><img src="https://img.shields.io/badge/fork-pa4uslf%2FCodex--Game--Studios-24292f?logo=github" alt="Fork Repo"></a>
+  <a href="https://github.com/Donchitos/Claude-Code-Game-Studios"><img src="https://img.shields.io/badge/upstream-Donchitos%2FClaude--Code--Game--Studios-f5f5f5?logo=github" alt="Upstream Repo"></a>
 </p>
 
 ---
@@ -24,17 +23,20 @@
 
 Building a game solo with AI is powerful — but a single chat session has no structure. No one stops you from hardcoding magic numbers, skipping design docs, or writing spaghetti code. There's no QA pass, no design review, no one asking "does this actually fit the game's vision?"
 
-**Claude Code Game Studios** solves this by giving your AI session the structure of a real studio. Instead of one general-purpose assistant, you get 49 specialized agents organized into a studio hierarchy — directors who guard the vision, department leads who own their domains, and specialists who do the hands-on work. Each agent has defined responsibilities, escalation paths, and quality gates.
+**Codex Game Studios** is a Codex-first fork of the original Claude Code Game Studios. It keeps the upstream `.claude/` workflow assets as the canonical source, then adds a Codex adapter layer (`AGENTS.md`, `.agentlens/INDEX.md`, `.agents/skills/*`) so the same studio system can be used cleanly from Codex.
 
-The result: you still make every decision, but now you have a team that asks the right questions, catches mistakes early, and keeps your project organized from first brainstorm to launch.
+The result: you still make every decision, but now you have a team structure that asks the right questions, catches mistakes early, and stays usable in both Codex and the original Claude setup.
+
+> Fork note: as of `2026-04-17`, this repo is maintained as the Codex-compatible fork at `pa4uslf/Codex-Game-Studios`.
 
 ---
 
 ## Table of Contents
 
 - [What's Included](#whats-included)
+- [Codex Compatibility](#codex-compatibility)
 - [Studio Hierarchy](#studio-hierarchy)
-- [Slash Commands](#slash-commands)
+- [Skills And Commands](#skills-and-commands)
 - [Getting Started](#getting-started)
 - [Upgrading](#upgrading)
 - [Project Structure](#project-structure)
@@ -43,7 +45,7 @@ The result: you still make every decision, but now you have a team that asks the
 - [Customization](#customization)
 - [Platform Support](#platform-support)
 - [Community](#community)
-- [Supporting This Project](#supporting-this-project)
+- [Upstream Credit](#upstream-credit)
 - [License](#license)
 
 ---
@@ -52,11 +54,26 @@ The result: you still make every decision, but now you have a team that asks the
 
 | Category | Count | Description |
 |----------|-------|-------------|
-| **Agents** | 49 | Specialized subagents across design, programming, art, audio, narrative, QA, and production |
-| **Skills** | 72 | Slash commands for every workflow phase (`/start`, `/design-system`, `/create-epics`, `/create-stories`, `/dev-story`, `/story-done`, etc.) |
+| **Studio Roles** | 49 | Canonical role definitions in `.claude/agents/` across design, programming, art, audio, narrative, QA, and production |
+| **Workflow Skills** | 72 | Canonical workflow definitions in `.claude/skills/`, mirrored to `.agents/skills/` for Codex |
 | **Hooks** | 12 | Automated validation on commits, pushes, asset changes, session lifecycle, agent audit trail, and gap detection |
 | **Rules** | 11 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, and more |
 | **Templates** | 39 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more |
+| **Codex Layer** | 1 | `AGENTS.md`, `.agentlens/INDEX.md`, `.agents/README.md`, and generated adapters for Codex |
+
+## Codex Compatibility
+
+This fork is organized around a simple split:
+
+- `.claude/` remains the canonical source for skills, roles, rules, templates, and hooks.
+- `.agents/skills/*/SKILL.md` are generated Codex adapters that point back to the canonical `.claude/skills/*/SKILL.md`.
+- `AGENTS.md` and `.agentlens/INDEX.md` give Codex a stable repo-native entry point.
+
+If you update a canonical skill, regenerate the Codex layer with:
+
+```bash
+python3 tools/sync_codex_adapters.py
+```
 
 ## Studio Hierarchy
 
@@ -92,9 +109,15 @@ The template includes agent sets for all three major engines. Use the set that m
 | **Unity** | `unity-specialist` | DOTS/ECS, Shaders/VFX, Addressables, UI Toolkit |
 | **Unreal Engine 5** | `unreal-specialist` | GAS, Blueprints, Replication, UMG/CommonUI |
 
-## Slash Commands
+## Skills And Commands
 
-Type `/` in Claude Code to access all 72 skills:
+These workflow names are canonical across both environments:
+
+- In Claude, they are exposed as slash commands like `/start`.
+- In Codex, use the same workflow name by asking for it directly, for example: `运行 start workflow`、`执行 brainstorm skill`、`按 setup-engine 流程继续`。
+- The Codex entry point is `.agents/skills/*`, which routes back to the canonical `.claude/skills/*/SKILL.md`.
+
+Core workflow set:
 
 **Onboarding & Navigation**
 `/start` `/help` `/project-stage-detect` `/setup-engine` `/adopt`
@@ -137,7 +160,8 @@ Type `/` in Claude Code to access all 72 skills:
 ### Prerequisites
 
 - [Git](https://git-scm.com/)
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) (`npm install -g @anthropic-ai/claude-code`)
+- Codex CLI
+- **Optional**: [Claude Code](https://docs.anthropic.com/en/docs/claude-code) if you also want to use the original upstream environment
 - **Recommended**: [jq](https://jqlang.github.io/jq/) (for hook validation) and Python 3 (for JSON validation)
 
 All hooks fail gracefully if optional tools are missing — nothing breaks, you just lose validation.
@@ -146,37 +170,49 @@ All hooks fail gracefully if optional tools are missing — nothing breaks, you 
 
 1. **Clone or use as template**:
    ```bash
-   git clone https://github.com/Donchitos/Claude-Code-Game-Studios.git my-game
+   git clone https://github.com/pa4uslf/Codex-Game-Studios.git my-game
    cd my-game
    ```
 
-2. **Open Claude Code** and start a session:
+2. **Open Codex** and start from the repo root:
+   ```bash
+   codex
+   ```
+
+3. **Let Codex read the repo entry points**:
+   - `AGENTS.md`
+   - `.agentlens/INDEX.md`
+   - `.agents/skills/INDEX.md`
+
+4. **Use the same workflow names as the original system**:
+   - `start` — first-session onboarding
+   - `brainstorm` — explore game ideas from scratch
+   - `setup-engine godot 4.6` — configure your engine if you already know
+   - `project-stage-detect` — analyze an existing project
+
+5. **If you also use Claude Code**, the original `.claude/` structure still works:
    ```bash
    claude
    ```
 
-3. **Run `/start`** — the system asks where you are (no idea, vague concept,
-   clear design, existing work) and guides you to the right workflow. No assumptions.
-
-   Or jump directly to a specific skill if you already know what you need:
-   - `/brainstorm` — explore game ideas from scratch
-   - `/setup-engine godot 4.6` — configure your engine if you already know
-   - `/project-stage-detect` — analyze an existing project
-
 ## Upgrading
 
-Already using an older version of this template? See [UPGRADING.md](UPGRADING.md)
-for step-by-step migration instructions, a breakdown of what changed between
-versions, and which files are safe to overwrite vs. which need a manual merge.
+Already using an older Claude-first or early fork version? See [UPGRADING.md](UPGRADING.md)
+for migration steps, including the `2026-04-17` Codex adapter layer.
 
 ## Project Structure
 
 ```
+AGENTS.md                           # Codex repo entry point
+.agentlens/INDEX.md                 # Repo navigation map for Codex
 CLAUDE.md                           # Master configuration
+.agents/
+  README.md                         # Codex adapter layer notes
+  skills/                           # Generated Codex adapters for the 72 canonical skills
 .claude/
   settings.json                     # Hooks, permissions, safety rules
-  agents/                           # 49 agent definitions (markdown + YAML frontmatter)
-  skills/                           # 72 slash commands (subdirectory per skill)
+  agents/                           # 49 canonical role definitions
+  skills/                           # 72 canonical workflow definitions
   hooks/                            # 12 hook scripts (bash, cross-platform)
   rules/                            # 11 path-scoped coding standards
   statusline.sh                     # Status line script (context%, model, stage, epic breadcrumb)
@@ -283,29 +319,20 @@ Tested on **Windows 10** with Git Bash. All hooks use POSIX-compatible patterns 
 
 ## Community
 
-- **Discussions** — [GitHub Discussions](https://github.com/Donchitos/Claude-Code-Game-Studios/discussions) for questions, ideas, and showcasing what you've built
-- **Issues** — [Bug reports and feature requests](https://github.com/Donchitos/Claude-Code-Game-Studios/issues)
+- **Fork repo** — [pa4uslf/Codex-Game-Studios](https://github.com/pa4uslf/Codex-Game-Studios)
+- **Upstream repo** — [Donchitos/Claude-Code-Game-Studios](https://github.com/Donchitos/Claude-Code-Game-Studios)
+- **Issues** — open issues against the fork for Codex-specific problems; upstream remains the reference for original Claude workflow evolution
 
 ---
 
-## Supporting This Project
+## Upstream Credit
 
-Claude Code Game Studios is free and open source. If it saves you time or helps you ship your game, consider supporting continued development:
-
-<p>
-  <a href="https://www.buymeacoffee.com/donchitos3"><img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-FFDD00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="Buy Me a Coffee"></a>
-  &nbsp;
-  <a href="https://github.com/sponsors/Donchitos"><img src="https://img.shields.io/badge/GitHub%20Sponsors-ea4aaa?style=for-the-badge&logo=githubsponsors&logoColor=white" alt="GitHub Sponsors"></a>
-</p>
-
-- **[Buy Me a Coffee](https://www.buymeacoffee.com/donchitos3)** — one-time support
-- **[GitHub Sponsors](https://github.com/sponsors/Donchitos)** — recurring support through GitHub
-
-Sponsorships help fund time spent maintaining skills, adding new agents, keeping up with Claude Code and engine API changes, and responding to community issues.
+This fork stands on top of the original work by `Donchitos/Claude-Code-Game-Studios`.
+The Codex layer in this repo is meant to preserve that workflow while making it usable from Codex without hand-maintaining two separate systems.
 
 ---
 
-*Built for Claude Code. Maintained and extended — contributions welcome via [GitHub Discussions](https://github.com/Donchitos/Claude-Code-Game-Studios/discussions).*
+*Built for Codex, kept compatible with the original Claude workflow assets.*
 
 ## License
 

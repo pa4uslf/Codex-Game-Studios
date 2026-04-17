@@ -1,4 +1,38 @@
-# Upgrading Claude Code Game Studios
+# Upgrading Codex Game Studios
+
+> Fork note (`2026-04-17`): this repo is now the Codex-compatible fork of the original Claude-first template. The canonical workflow content still lives under `.claude/`, while Codex adapters live under `.agents/`.
+
+## Codex Fork Migration (`2026-04-17`)
+
+If you're upgrading from a Claude-first checkout or an earlier fork revision, migrate these pieces first:
+
+### New Codex entry points
+
+Add:
+
+```text
+AGENTS.md
+.agentlens/INDEX.md
+.agents/README.md
+.agents/skills/ccgs-agent-router/SKILL.md
+tools/sync_codex_adapters.py
+```
+
+### Generated Codex skill adapters
+
+Generate:
+
+```bash
+python3 tools/sync_codex_adapters.py
+```
+
+This writes `.agents/skills/INDEX.md` and one adapter per canonical skill in `.claude/skills/*/SKILL.md`.
+
+### Canonical source rule
+
+- Edit `.claude/skills/*/SKILL.md` for workflow changes.
+- Do not hand-edit `.agents/skills/*/SKILL.md`.
+- Re-run `python3 tools/sync_codex_adapters.py` after every canonical skill change.
 
 This guide covers upgrading your existing game project repo from one version
 of the template to the next.

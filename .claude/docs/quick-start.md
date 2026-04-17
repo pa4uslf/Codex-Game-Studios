@@ -1,15 +1,23 @@
 # Game Studio Agent Architecture -- Quick Start Guide
 
+> Codex fork note (`2026-04-17`): Codex users should start with `AGENTS.md`, then `.agentlens/INDEX.md`, then the generated adapters in `.agents/skills/*`. This file remains the canonical quick-start source for the upstream workflow.
+
 ## What Is This?
 
 This is a complete Claude Code agent architecture for game development. It
-organizes 48 specialized AI agents into a studio hierarchy that mirrors
+organizes 49 specialized studio roles into a hierarchy that mirrors
 real game development teams, with defined responsibilities, delegation
 rules, and coordination protocols. It includes engine-specialist agents
 for Godot, Unity, and Unreal — each with dedicated sub-specialists for
 major engine subsystems. All design agents and templates are grounded in
 established game design theory (MDA Framework, Self-Determination Theory,
 Flow State, Bartle Player Types). Use whichever engine set matches your project.
+
+For Codex, treat the workflow names below as canonical labels:
+
+- Claude uses slash commands like `/start`
+- Codex uses the matching adapter in `.agents/skills/<name>/SKILL.md`
+- The canonical source still lives in `.claude/skills/<name>/SKILL.md`
 
 ## How to Use
 
@@ -71,12 +79,14 @@ Ask yourself: "What department would handle this in a real studio?"
 | Write patch notes for players | `community-manager` |
 | Brainstorm a new game idea | Use `/brainstorm` skill |
 
-### 3. Use Slash Commands for Common Tasks
+### 3. Use Workflow Names for Common Tasks
+
+In Claude, use the slash command form. In Codex, ask for the same workflow by name.
 
 | Command | What it does |
 |---------|-------------|
-| `/start` | First-time onboarding — asks where you are, guides you to the right workflow |
-| `/help` | Context-aware "what do I do next?" — reads your current phase and artifacts |
+| `/start` / `start` | First-time onboarding — asks where you are, guides you to the right workflow |
+| `/help` / `help` | Context-aware "what do I do next?" — reads your current phase and artifacts |
 | `/project-stage-detect` | Analyze project state, detect stage, identify gaps |
 | `/setup-engine` | Configure engine + version, populate reference docs |
 | `/adopt` | Brownfield audit and migration plan for existing projects |
@@ -198,14 +208,14 @@ Also in `.claude/docs/templates/collaborative-protocols/` (used by agents, not t
 
 ## First Steps for a New Project
 
-**Don't know where to begin?** Run `/start`. It asks where you are and routes
+**Don't know where to begin?** Run `/start` in Claude, or ask for the `start` workflow in Codex. It asks where you are and routes
 you to the right workflow. No assumptions about your game, engine, or experience level.
 
 If you already know what you need, jump directly to the relevant path:
 
 ### Path A: "I have no idea what to build"
 
-1. **Run `/start`** (or `/brainstorm open`) — guided creative exploration:
+1. **Run `/start`** in Claude, or ask for `start` (or `brainstorm open`) in Codex — guided creative exploration:
    what excites you, what you've played, your constraints
    - Generates 3 concepts, helps you pick one, defines core loop and pillars
    - Produces a game concept document and recommends an engine
@@ -251,7 +261,7 @@ If you have a concept but don't know which engine fits:
 
 If you have design docs, prototypes, or code already:
 
-1. **Run `/start`** (or `/project-stage-detect`) — analyzes what exists,
+1. **Run `/start`** in Claude, or ask for `start` (or `project-stage-detect`) in Codex — analyzes what exists,
    identifies gaps, and recommends next steps
 2. **Run `/adopt`** if you have existing GDDs, ADRs, or stories — audits
    internal format compliance and builds a numbered migration plan to fill gaps
@@ -267,7 +277,7 @@ CLAUDE.md                          -- Master config (read this first, ~60 lines)
 .claude/
   settings.json                    -- Claude Code hooks and project settings
   agents/                          -- 48 agent definitions (YAML frontmatter)
-  skills/                          -- 68 slash command definitions (YAML frontmatter)
+  skills/                          -- 72 canonical workflow definitions
   hooks/                           -- 12 hook scripts (.sh) wired by settings.json
   rules/                           -- 11 path-specific rule files
   docs/

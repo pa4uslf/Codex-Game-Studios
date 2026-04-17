@@ -1,7 +1,9 @@
 # Claude Code Game Studios -- Game Studio Agent Architecture
 
-Indie game development managed through 48 coordinated Claude Code subagents.
-Each agent owns a specific domain, enforcing separation of concerns and quality.
+> Codex users: start with `AGENTS.md` and `.agentlens/INDEX.md`. This file remains the Claude-native entry point and canonical master config for the upstream workflow.
+
+Indie game development managed through 49 coordinated studio roles and workflow skills.
+Each role owns a specific domain, enforcing separation of concerns and quality.
 
 ## Technology Stack
 
@@ -43,7 +45,7 @@ Every task follows: **Question -> Options -> Decision -> Draft -> Approval**
 See `docs/COLLABORATIVE-DESIGN-PRINCIPLE.md` for full protocol and examples.
 
 > **First session?** If the project has no engine configured and no game concept,
-> run `/start` to begin the guided onboarding flow.
+> run `/start` in Claude, or ask for the `start` workflow in Codex, to begin the guided onboarding flow.
 
 ## Coding Standards
 

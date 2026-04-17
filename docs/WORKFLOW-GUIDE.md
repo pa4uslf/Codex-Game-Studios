@@ -1,10 +1,13 @@
 # Claude Code Game Studios -- Complete Workflow Guide
 
+> Codex fork note (`2026-04-17`): if you're using Codex, start at `AGENTS.md` and `.agentlens/INDEX.md`. The workflow names below still apply, but Codex consumes them through `.agents/skills/*` adapters rather than Claude slash commands.
+
 > **How to go from zero to a shipped game using the Agent Architecture.**
 >
 > This guide walks you through every phase of game development using the
-> 48-agent system, 68 slash commands, and 12 automated hooks. It assumes you
-> have Claude Code installed and are working from the project root.
+> 49-role studio system, 72 workflow skills, and 12 automated hooks. It assumes
+> you're working from the project root, with Codex as the default interface and
+> Claude Code as an optional compatible interface.
 >
 > The pipeline has 7 phases. Each phase has a formal gate (`/gate-check`)
 > that must pass before you advance. The authoritative phase sequence is
@@ -35,10 +38,11 @@
 
 Before you start, make sure you have:
 
-- **Claude Code** installed and working
+- **Codex CLI** installed and working
 - **Git** with Git Bash (Windows) or standard terminal (Mac/Linux)
 - **jq** (optional but recommended -- hooks fall back to `grep` if missing)
 - **Python 3** (optional -- some hooks use it for JSON validation)
+- **Optional**: Claude Code, if you also want to use the original upstream slash-command workflow
 
 ### Step 1: Clone and Open
 
@@ -52,7 +56,8 @@ cd my-game
 If this is your first session:
 
 ```
-/start
+Codex: ask for the `start` workflow
+Claude: /start
 ```
 
 This guided onboarding asks where you are and routes you to the right phase:
@@ -66,8 +71,8 @@ This guided onboarding asks where you are and routes you to the right phase:
 
 ### Step 3: Verify Hooks Are Working
 
-Start a new Claude Code session. You should see output from the
-`session-start.sh` hook:
+Start a new session from the repo root. In Claude Code you should see output
+from the `session-start.sh` hook:
 
 ```
 === Claude Code Game Studios -- Session Context ===
@@ -82,10 +87,11 @@ make sure the hook paths are correct for your OS.
 
 ### Step 4: Ask for Help Anytime
 
-At any point, run:
+At any point, use the `help` workflow:
 
 ```
-/help
+Codex: ask for the `help` workflow
+Claude: /help
 ```
 
 This reads your current phase from `production/stage.txt`, checks which

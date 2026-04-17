@@ -14,6 +14,10 @@ Desktop.ini
 CLAUDE.local.md
 production/session-logs/
 
+# === Codex Local ===
+.codex/
+AGENTS.local.md
+
 # === Internal Planning (not for public) ===
 
 expansions/
