@@ -1,6 +1,6 @@
 ---
 name: prototype
-description: "Codex adapter for the original CCGS `prototype` workflow. Canonical source: `.claude/skills/prototype/SKILL.md`. Rapid prototyping workflow. Skips normal standards to quickly validate a game concept or mechanic. Produces throwaway code and a structured prototype report."
+description: "Codex adapter for the original CCGS `prototype` workflow. Canonical source: `.claude/skills/prototype/SKILL.md`. Concept prototype — validate the core idea is worth designing before writing GDDs. Run right after /brainstorm and /setup-engine. Routes to HTML, Engine, or Paper path based on game type. Produces a throwaway build and a PROCEED/PIVOT/KILL verdict."
 ---
 
 # Codex Adapter: `prototype`
@@ -22,7 +22,7 @@ Canonical source: `../../../.claude/skills/prototype/SKILL.md`
 
 ## Original description
 
-Rapid prototyping workflow. Skips normal standards to quickly validate a game concept or mechanic. Produces throwaway code and a structured prototype report.
+Concept prototype — validate the core idea is worth designing before writing GDDs. Run right after /brainstorm and /setup-engine. Routes to HTML, Engine, or Paper path based on game type. Produces a throwaway build and a PROCEED/PIVOT/KILL verdict.
 
 ## Maintenance
 

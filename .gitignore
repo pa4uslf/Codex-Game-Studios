@@ -22,6 +22,9 @@ AGENTS.local.md
 
 expansions/
 
+# === Marrow (eval tooling — never commit) ===
+marrow/
+
 # === Runtime Artifacts (auto-generated, start empty on fresh clone) ===
 # Created on first use by /consistency-check and /architecture-review
 docs/consistency-failures.md
