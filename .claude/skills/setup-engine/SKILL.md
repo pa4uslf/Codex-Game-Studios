@@ -4,6 +4,7 @@ description: "Configure the project's game engine and version. Pins the engine i
 argument-hint: "[engine] | [engine version] | refresh | upgrade [old-version] [new-version] | no args for guided selection"
 user-invocable: true
 allowed-tools: Read, Glob, Grep, Write, Edit, WebSearch, WebFetch, Task, AskUserQuestion
+model: sonnet
 ---
 
 When this skill is invoked:
@@ -560,7 +561,7 @@ Next Steps:
 1. Review docs/engine-reference/<engine>/VERSION.md
 2. [If from /brainstorm] Run /map-systems to decompose your concept into individual systems
 3. [If from /brainstorm] Run /design-system to author per-system GDDs (guided, section-by-section)
-4. [If from /brainstorm] Run /prototype [core-mechanic] to test the core loop
+4. [If from /brainstorm] Run /prototype [core-mechanic] to validate the core idea before writing GDDs
 5. [If fresh start] Run /brainstorm to discover your game concept
 6. Create your first milestone: /sprint-plan new
 ```

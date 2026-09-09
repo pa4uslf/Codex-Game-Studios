@@ -3,14 +3,14 @@
   <p align="center">
     Turn a single Codex session into a full game development studio.
     <br />
-    49 studio roles. 72 workflow skills. One Codex-compatible game-dev system.
+    49 studio roles. 73 workflow skills. One Codex-compatible game-dev system.
   </p>
 </p>
 
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License"></a>
   <a href=".claude/agents"><img src="https://img.shields.io/badge/agents-49-blueviolet" alt="49 Agents"></a>
-  <a href=".agents/skills"><img src="https://img.shields.io/badge/codex%20skills-72-green" alt="72 Codex Skills"></a>
+  <a href=".agents/skills"><img src="https://img.shields.io/badge/codex%20skills-73-green" alt="73 Codex Skills"></a>
   <a href=".claude/hooks"><img src="https://img.shields.io/badge/hooks-12-orange" alt="12 Hooks"></a>
   <a href=".claude/rules"><img src="https://img.shields.io/badge/rules-11-red" alt="11 Rules"></a>
   <a href="https://github.com/pa4uslf/Codex-Game-Studios"><img src="https://img.shields.io/badge/fork-pa4uslf%2FCodex--Game--Studios-24292f?logo=github" alt="Fork Repo"></a>
@@ -55,10 +55,10 @@ The result: you still make every decision, but now you have a team structure tha
 | Category | Count | Description |
 |----------|-------|-------------|
 | **Studio Roles** | 49 | Canonical role definitions in `.claude/agents/` across design, programming, art, audio, narrative, QA, and production |
-| **Workflow Skills** | 72 | Canonical workflow definitions in `.claude/skills/`, mirrored to `.agents/skills/` for Codex |
+| **Workflow Skills** | 73 | Canonical workflow definitions in `.claude/skills/`, mirrored to `.agents/skills/` for Codex |
 | **Hooks** | 12 | Automated validation on commits, pushes, asset changes, session lifecycle, agent audit trail, and gap detection |
 | **Rules** | 11 | Path-scoped coding standards enforced when editing gameplay, engine, AI, UI, network code, and more |
-| **Templates** | 39 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more |
+| **Templates** | 41 | Document templates for GDDs, UX specs, ADRs, sprint plans, HUD design, accessibility, and more |
 | **Codex Layer** | 1 | `AGENTS.md`, `.agentlens/INDEX.md`, `.agents/README.md`, and generated adapters for Codex |
 
 ## Codex Compatibility
@@ -138,7 +138,7 @@ Core workflow set:
 `/create-epics` `/create-stories` `/dev-story` `/sprint-plan` `/sprint-status` `/story-readiness` `/story-done` `/estimate`
 
 **Reviews & Analysis**
-`/design-review` `/code-review` `/balance-check` `/content-audit` `/scope-check` `/perf-profile` `/tech-debt` `/gate-check` `/consistency-check`
+`/design-review` `/code-review` `/balance-check` `/content-audit` `/scope-check` `/perf-profile` `/tech-debt` `/gate-check` `/consistency-check` `/security-audit`
 
 **QA & Testing**
 `/qa-plan` `/smoke-check` `/soak-test` `/regression-suite` `/test-setup` `/test-helpers` `/test-evidence-review` `/test-flakiness` `/skill-test` `/skill-improve`
@@ -147,7 +147,7 @@ Core workflow set:
 `/milestone-review` `/retrospective` `/bug-report` `/bug-triage` `/reverse-document` `/playtest-report`
 
 **Release**
-`/release-checklist` `/launch-checklist` `/changelog` `/patch-notes` `/hotfix`
+`/release-checklist` `/launch-checklist` `/changelog` `/patch-notes` `/hotfix` `/day-one-patch`
 
 **Creative & Content**
 `/prototype` `/onboard` `/localize`
@@ -212,13 +212,13 @@ CLAUDE.md                           # Master configuration
 .claude/
   settings.json                     # Hooks, permissions, safety rules
   agents/                           # 49 canonical role definitions
-  skills/                           # 72 canonical workflow definitions
+  skills/                           # 73 canonical workflow definitions
   hooks/                            # 12 hook scripts (bash, cross-platform)
   rules/                            # 11 path-scoped coding standards
   statusline.sh                     # Status line script (context%, model, stage, epic breadcrumb)
   docs/
     workflow-catalog.yaml           # 7-phase pipeline definition (read by /help)
-    templates/                      # 39 document templates
+    templates/                      # 41 document templates
 src/                                # Game source code
 assets/                             # Art, audio, VFX, shaders, data files
 design/                             # GDDs, narrative docs, level designs
@@ -315,7 +315,7 @@ This is a **template**, not a locked framework. Everything is meant to be custom
 
 ## Platform Support
 
-Tested on **Windows 10** with Git Bash. All hooks use POSIX-compatible patterns (`grep -E`, not `grep -P`) and include fallbacks for missing tools. Works on macOS and Linux without modification.
+Primary development and testing on **Windows 10** with Git Bash. All hooks use POSIX-compatible patterns (`grep -E`, not `grep -P`) and include fallbacks for missing tools, so they should run on macOS and Linux. The `notify.sh` hook uses PowerShell for Windows toast notifications and is a no-op elsewhere — desktop notifications on macOS/Linux are not yet wired. Cross-platform testing is ongoing; please file issues for any platform-specific breakage.
 
 ## Community
 
